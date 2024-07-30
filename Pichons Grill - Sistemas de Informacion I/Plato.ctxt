@@ -1,7 +1,9 @@
 #BlueJ class context
 comment0.target=Plato
-comment1.params=idProducto\ nombreProducto\ precio\ descripcion\ imagen\ categoria
-comment1.target=Plato(int,\ java.lang.String,\ double,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=nombreProducto\ precio\ descripcion\ imagen\ categoria
+comment1.target=Plato(java.lang.String,\ double,\ java.lang.String,\ java.lang.String,\ java.lang.String)
 comment2.params=
 comment2.target=java.lang.String\ getCategoria()
-numComments=3
+comment3.params=nuevaCategoria
+comment3.target=void\ setCategoria(java.lang.String)
+numComments=4

@@ -3,11 +3,12 @@ public class Bebida extends Producto{
     private String marca;
     private boolean natural;
     
-    public Bebida(int idProducto, String nombreProducto, double precio, String descripcion, String imagen, 
-        int mls, String marca){
-        super(idProducto, nombreProducto, precio, descripcion, imagen);
+    public Bebida(String nombreProducto, double precio, String descripcion, String imagen, 
+        int mls, String marca, boolean natural){
+        super(nombreProducto, precio, descripcion, imagen);
         this.mls = mls;
         this.marca = marca;
+        this.natural = natural;
     }
     
     public int getMls(){
@@ -20,5 +21,13 @@ public class Bebida extends Producto{
     
     public boolean esNatural(){
         return natural;
+    }
+    
+    public void setMls(int nuevosMls){
+        mls = nuevosMls;
+    }
+    
+    public void setMarca(String nuevaMarca){
+        marca = nuevaMarca;
     }
 }

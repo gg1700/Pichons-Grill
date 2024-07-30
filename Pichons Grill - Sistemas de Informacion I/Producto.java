@@ -7,15 +7,11 @@ public class Producto{
     protected String descripcion;
     protected String imagen;
     
-    private final int limiteSuperior;
-    private Menu menu; 
-    private ArrayList<Integer> listaIds;
+    private Menu menu;
     
-    public Producto(int idProducto, String nombreProducto, double precio, String descripcion, String imagen){
-        limiteSuperior = 999;
+    public Producto(String nombreProducto, double precio, String descripcion, String imagen){
         menu = new Menu();
-        listaIds = obtenerIdsMenu();
-        this.idProducto = asignarIdProducto(idProducto);
+        this.idProducto = 0;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
         this.descripcion = descripcion;
@@ -43,45 +39,12 @@ public class Producto{
     }
     
     public void setIdProducto(int nuevoId){
-        idProducto = asignarIdProducto(nuevoId);
+       idProducto = nuevoId; 
     }
     
-    private int asignarIdProducto(int nuevoId){
-        int res;
-        if(!listaIds.isEmpty()){
-            if(nuevoId <= limiteSuperior && nuevoId >= 0 && 
-                !listaIds.contains(idProducto)){
-                res = nuevoId;
-            }else{
-                int ultimoId = listaIds.get(listaIds.size()-1);
-                if(ultimoId != limiteSuperior){
-                    res = ultimoId + 1;
-                }else{
-                    res = -1;
-                }
-            }
-        }else{
-            if(nuevoId <= limiteSuperior && nuevoId >= 0){
-                res = nuevoId;
-            }else{
-                res = 0;
-            }
-        }
-        return res;
-    }
-    
-    private ArrayList<Integer> obtenerIdsMenu(){
-        ArrayList<Integer> res = new ArrayList<Integer>();
-        for(int i = 0; i < menu.getProductos().size(); i++){
-            Producto actual = menu.getProductos().get(i);
-            res.add(actual.getIdProducto());
-        }
-        return res;
-    }
-    
-    private boolean idValido(){
+    public boolean idValido(){
         boolean res;
-        res = (idProducto <= 999 && idProducto >= 0);
+        res = (idProducto <= menu.getLimiteSuperior() && idProducto >= 0);
         return res;
     }
 }
