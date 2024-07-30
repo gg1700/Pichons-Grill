@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Carrito
+comment1.params=
+comment1.target=Carrito()
+comment2.params=
+comment2.target=void\ anadirPlato()
+comment3.params=
+comment3.target=void\ eliminarPlato()
+comment4.params=
+comment4.target=void\ modificarCantidadPlatos()
+comment5.params=
+comment5.target=double\ calcularTotal()
+numComments=6

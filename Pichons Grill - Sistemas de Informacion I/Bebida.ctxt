@@ -1,0 +1,9 @@
+#BlueJ class context
+comment0.target=Bebida
+comment1.params=
+comment1.target=Bebida()
+comment2.params=
+comment2.target=int\ getMls()
+comment3.params=
+comment3.target=java.lang.String\ getMarca()
+numComments=4

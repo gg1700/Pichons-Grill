@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Menu
+comment1.params=
+comment1.target=Menu()
+comment2.params=
+comment2.target=void\ registrarProducto()
+comment3.params=
+comment3.target=void\ quitarProducto()
+comment4.params=
+comment4.target=void\ modificarProducto()
+comment5.params=
+comment5.target=java.util.ArrayList\ getProductos()
+numComments=6

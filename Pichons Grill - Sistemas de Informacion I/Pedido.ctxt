@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=Pedido
+comment1.params=
+comment1.target=Pedido()
+comment2.params=
+comment2.target=java.util.ArrayList\ getContenidos()
+comment3.params=
+comment3.target=boolean\ estaPagado()
+comment4.params=
+comment4.target=Pago\ getTipoPago()
+comment5.params=
+comment5.target=java.util.Date\ getFecha()
+comment6.params=
+comment6.target=double\ getTotal()
+numComments=7

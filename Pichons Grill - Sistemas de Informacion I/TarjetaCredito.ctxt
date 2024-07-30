@@ -1,0 +1,15 @@
+#BlueJ class context
+comment0.target=TarjetaCredito
+comment1.params=
+comment1.target=TarjetaCredito()
+comment2.params=
+comment2.target=void\ registrarDatos()
+comment3.params=
+comment3.target=java.lang.String\ getTitular()
+comment4.params=
+comment4.target=java.lang.String\ getBancoTitular()
+comment5.params=
+comment5.target=java.lang.String\ estadoTarjeta()
+comment6.params=
+comment6.target=java.lang.String\ getDireccionFacturacion()
+numComments=7

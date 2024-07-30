@@ -1,0 +1,13 @@
+#BlueJ class context
+comment0.target=Usuario
+comment1.params=
+comment1.target=java.lang.String\ getNombre()
+comment2.params=
+comment2.target=int\ getTelefono()
+comment3.params=
+comment3.target=void\ setNombre()
+comment4.params=
+comment4.target=void\ setTelefono()
+comment5.params=
+comment5.target=void\ agregarContrasena()
+numComments=6
