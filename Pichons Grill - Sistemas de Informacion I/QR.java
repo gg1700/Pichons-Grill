@@ -7,8 +7,16 @@ public class QR extends Pago{
     private String imagenQR;
     private String bancoEmisor;
     
-    public QR(){
-        
+    public QR(Pedido pedido){
+        super(pedido);
+    }
+    
+    public void crearQR(Date fechaEmision, Date fechaExpiracion, double monto, String imagen, String bancoEmisor){
+        this.fechaEmision = fechaEmision;
+        this.fechaExpiracion = fechaExpiracion;
+        this.monto = monto;
+        this.imagenQR = imagen;
+        this.bancoEmisor = bancoEmisor;
     }
     
     public Date getFechaEmision(){

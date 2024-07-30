@@ -41,7 +41,9 @@ public class Producto{
     public void setIdProducto(int nuevoId){
        idProducto = nuevoId; 
     }
-    
+    //esta clase quizas se podria pasar directamente al menu para no tener que
+    //tener una instancia de Menu en cada producto (eso o volver menu estatico)
+    //-chamo
     public boolean idValido(){
         boolean res;
         res = (idProducto <= menu.getLimiteSuperior() && idProducto >= 0);

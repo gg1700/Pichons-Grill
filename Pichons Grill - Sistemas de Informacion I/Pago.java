@@ -1,8 +1,16 @@
 public abstract class Pago{
-    protected String idPago;
+    protected int idPago;
     protected Pedido pedido;
     
-    public String getIdPago(){
+    public Pago(Pedido pedido){
+        this.pedido = pedido;
+    }
+    
+    public void setIdPago(int id){
+        this.idPago = id;
+    }
+    
+    public int getIdPago(){
         return idPago;
     }
     

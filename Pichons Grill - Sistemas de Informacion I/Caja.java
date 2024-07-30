@@ -20,5 +20,4 @@ public class Caja{
     public void designarNuevoCajero(){
         
     }
-    
 }

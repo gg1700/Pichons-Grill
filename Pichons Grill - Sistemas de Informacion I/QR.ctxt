@@ -1,15 +1,17 @@
 #BlueJ class context
 comment0.target=QR
-comment1.params=
-comment1.target=QR()
-comment2.params=
-comment2.target=java.util.Date\ getFechaEmision()
+comment1.params=pedido
+comment1.target=QR(Pedido)
+comment2.params=fechaEmision\ fechaExpiracion\ monto\ imagen\ bancoEmisor
+comment2.target=void\ crearQR(java.util.Date,\ java.util.Date,\ double,\ java.lang.String,\ java.lang.String)
 comment3.params=
-comment3.target=java.util.Date\ getFechaExpiracion()
+comment3.target=java.util.Date\ getFechaEmision()
 comment4.params=
-comment4.target=double\ getMonto()
+comment4.target=java.util.Date\ getFechaExpiracion()
 comment5.params=
-comment5.target=java.lang.String\ getImagenQR()
+comment5.target=double\ getMonto()
 comment6.params=
-comment6.target=java.lang.String\ getBancoEmisor()
-numComments=7
+comment6.target=java.lang.String\ getImagenQR()
+comment7.params=
+comment7.target=java.lang.String\ getBancoEmisor()
+numComments=8
