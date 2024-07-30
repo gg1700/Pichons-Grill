@@ -31,7 +31,7 @@ public class Menu{
         }else{
             int ultimoId = productos.get(productos.size()-1).getIdProducto();
             producto.setIdProducto(ultimoId + 1);
-            if(producto.idValido()){
+            if(producto.idValido() && !productos.contains(producto)){
                 productos.add(producto);
                 if(producto instanceof Plato){
                     res = "El plato ha sido registrado al menu con exito.";
