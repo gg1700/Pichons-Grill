@@ -15,7 +15,7 @@ public class Repartidor extends Usuario{
     }
     
     public void setIdRepartidor(){
-        
+        //Lolsito
     }
     
     public void setPedidoActual(){
