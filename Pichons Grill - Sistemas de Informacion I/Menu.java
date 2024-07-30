@@ -4,7 +4,7 @@ public class Menu{
     private ArrayList<Producto> productos;
     
     public Menu(){
-        
+        productos = new ArrayList<Producto>();
     }
     
     public void registrarProducto(){

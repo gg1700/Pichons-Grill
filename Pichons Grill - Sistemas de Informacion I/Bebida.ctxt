@@ -1,9 +1,11 @@
 #BlueJ class context
 comment0.target=Bebida
-comment1.params=
-comment1.target=Bebida()
+comment1.params=idProducto\ nombreProducto\ precio\ descripcion\ imagen\ mls\ marca
+comment1.target=Bebida(int,\ java.lang.String,\ double,\ java.lang.String,\ java.lang.String,\ int,\ java.lang.String)
 comment2.params=
 comment2.target=int\ getMls()
 comment3.params=
 comment3.target=java.lang.String\ getMarca()
-numComments=4
+comment4.params=
+comment4.target=boolean\ esNatural()
+numComments=5

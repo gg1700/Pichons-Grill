@@ -1,11 +1,23 @@
 #BlueJ class context
 comment0.target=Producto
-comment1.params=
-comment1.target=Producto()
+comment1.params=idProducto\ nombreProducto\ precio\ descripcion\ imagen
+comment1.target=Producto(int,\ java.lang.String,\ double,\ java.lang.String,\ java.lang.String)
+comment10.params=
+comment10.target=boolean\ idValido()
 comment2.params=
-comment2.target=java.lang.String\ getIdProducto()
+comment2.target=int\ getIdProducto()
 comment3.params=
 comment3.target=java.lang.String\ getNombreProducto()
 comment4.params=
 comment4.target=double\ getPrecio()
-numComments=5
+comment5.params=
+comment5.target=java.lang.String\ getDescripcion()
+comment6.params=
+comment6.target=java.lang.String\ getImagen()
+comment7.params=nuevoId
+comment7.target=void\ setIdProducto(int)
+comment8.params=nuevoId
+comment8.target=int\ asignarIdProducto(int)
+comment9.params=
+comment9.target=java.util.ArrayList\ obtenerIdsMenu()
+numComments=11
