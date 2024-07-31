@@ -227,4 +227,6 @@ public class Cliente extends Usuario{
         res = carrito.getProductosCarrito();
         return res;
     }
+    
+    
 }

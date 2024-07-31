@@ -3,13 +3,13 @@ import java.util.ArrayList;
 public class Usuario{
     protected String nombre;
     protected ArrayList<String> contrasenas;
-    protected int telefono;
+    protected String telefono;
     
     public String getNombre(){
         return nombre;
     }
     
-    public int getTelefono(){
+    public String getTelefono(){
         return telefono;
     }
     

@@ -26,6 +26,8 @@ public class Carrito{
     public void quitarProducto(Producto producto){
         if(productosCarrito.containsKey(producto)){
             productosCarrito.remove(producto);
+            int cantidad=productosCarrito.get(producto);
+            total=-producto.getPrecio()*cantidad;
             actualizarTotal();
         }
     }
