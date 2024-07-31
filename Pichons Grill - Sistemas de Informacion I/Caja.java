@@ -6,7 +6,9 @@ public class Caja{
     protected ArrayList<String> contactos;
     protected Cajero cajeroDesignado;
     public Caja(){
-        
+        listaDePedidos = new ArrayList<Pedido>();
+        listaDePagos = new ArrayList<Pago>();
+        contactos = new ArrayList<String>();
     }
     public void pasarPedidoACocina (){
         
@@ -15,7 +17,7 @@ public class Caja{
         
     }
     public String verNombreCajero() {
-        return null;
+        return cajeroDesignado.getNombreCajero();
     }
     public void designarNuevoCajero(){
         
