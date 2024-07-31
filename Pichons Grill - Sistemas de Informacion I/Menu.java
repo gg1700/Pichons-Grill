@@ -39,7 +39,7 @@ public class Menu{
         }else{
             int ultimoId = productos.get(productos.size()-1).getIdProducto();
             producto.setIdProducto(ultimoId + 1);
-            if(producto.idValido() && !productos.contains(producto)){
+            if(idValido(producto.getIdProducto()) && !productos.contains(producto)){
                 productos.add(producto);
                 res=imprimirMensajes(producto);
             }else{
@@ -157,5 +157,27 @@ public class Menu{
         for(Bebida bebidaActual2:bebidasGaseosas){
             listaBebidas.add(bebidaActual2);
         }
+    }
+    
+    public boolean idValido(int id){
+        boolean res;
+        res = (id <= limiteSuperior && id >= 0);
+        return res;
+    }
+    
+    public Producto getProductoMenu(int id){
+        Producto res;
+        if(idValido(id)){
+            Producto productoActual = new Producto();
+            for(int i = 0; i < productos.size(); i++){
+                if(id == productos.get(i).getIdProducto()){
+                    productoActual = productos.get(i);
+                }
+            }
+            res = productoActual;
+        }else{
+           res = null; 
+        }
+        return res;
     }
 }

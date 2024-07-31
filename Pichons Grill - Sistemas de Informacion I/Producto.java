@@ -7,10 +7,15 @@ public class Producto{
     protected String descripcion;
     protected String imagen;
     
-    private Menu menu;
+    public Producto(){
+        idProducto = 0;
+        nombreProducto = "";
+        precio = 0;
+        descripcion = "";
+        imagen = "";
+    }
     
     public Producto(String nombreProducto, double precio, String descripcion, String imagen){
-        menu = new Menu();
         this.idProducto = 0;
         this.nombreProducto = nombreProducto;
         this.precio = precio;
@@ -40,13 +45,5 @@ public class Producto{
     
     public void setIdProducto(int nuevoId){
        idProducto = nuevoId; 
-    }
-    //esta clase quizas se podria pasar directamente al menu para no tener que
-    //tener una instancia de Menu en cada producto (eso o volver menu estatico)
-    //-chamo
-    public boolean idValido(){
-        boolean res;
-        res = (idProducto <= menu.getLimiteSuperior() && idProducto >= 0);
-        return res;
     }
 }
