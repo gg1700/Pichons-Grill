@@ -2,6 +2,8 @@
 comment0.target=Pedido
 comment1.params=
 comment1.target=Pedido()
+comment10.params=
+comment10.target=Cliente\ getCliente()
 comment2.params=carrito
 comment2.target=void\ registrarPedido(Carrito)
 comment3.params=nuevoEstado
@@ -18,4 +20,4 @@ comment8.params=
 comment8.target=java.lang.String\ getEstado()
 comment9.params=
 comment9.target=java.util.Date\ getFecha()
-numComments=10
+numComments=11

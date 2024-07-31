@@ -15,7 +15,7 @@ public class Pedido {
     // Fecha en la que se realiza el pedido
     private Date fecha;
 
-    // Constructor del pedido
+    // Constructor del pedido 
     public Pedido() {
         this.idPedido = idContador++;
         this.productos = new ArrayList<>();
@@ -84,5 +84,8 @@ public class Pedido {
 
     public Date getFecha() {
         return fecha;
+    }
+    public Cliente getCliente() {
+        return null;
     }
 }
