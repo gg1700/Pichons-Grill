@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=TarjetaCredito
-comment1.params=pedido
-comment1.target=TarjetaCredito(Pedido)
-comment2.params=numero\ CVV\ titular\ bancoEmisor\ estado\ direccion
-comment2.target=void\ registrarDatos(int,\ int,\ java.lang.String,\ java.lang.String,\ java.lang.String,\ java.lang.String)
+comment1.params=
+comment1.target=TarjetaCredito()
+comment2.params=
+comment2.target=void\ registrarDatos()
 comment3.params=
 comment3.target=java.lang.String\ getTitular()
 comment4.params=

@@ -1,13 +1,9 @@
 #BlueJ class context
 comment0.target=Pago
-comment1.params=pedido
-comment1.target=Pago(Pedido)
-comment2.params=id
-comment2.target=void\ setIdPago(int)
+comment1.params=
+comment1.target=java.lang.String\ getIdPago()
+comment2.params=
+comment2.target=Pedido\ getPedido()
 comment3.params=
-comment3.target=int\ getIdPago()
-comment4.params=
-comment4.target=Pedido\ getPedido()
-comment5.params=
-comment5.target=Cliente\ getCliente()
-numComments=6
+comment3.target=Cliente\ getCliente()
+numComments=4
