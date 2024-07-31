@@ -49,11 +49,11 @@ public class Pedido {
         System.out.println("Estado: " + estado);
     }
 
-    public List<Producto> getProductos() {
+    public ArrayList<Producto> getProductos() {
         return productos;
     }
 
-    public List<Integer> getCantidades() {
+    public ArrayList<Integer> getCantidades() {
         return cantidades;
     }
 
@@ -63,6 +63,10 @@ public class Pedido {
 
     public String getEstado() {
         return estado;
+    }
+    
+    public int getIdPedido() {
+        return idPedido;
     }
 
     public Date getFecha() {
