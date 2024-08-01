@@ -1,13 +1,15 @@
 import java.util.*;
+import java.time.LocalDateTime;
 
 public class Carrito{
     private HashMap<Producto, Integer> productosCarrito;
     private double total;
     private final int cantidadProductosLimite;
     private Pedido pedido;
+    private Caja caja;
 
     public Carrito(){
-        productosCarrito = new HashMap<>();
+        productosCarrito = new HashMap<Producto, Integer>();
         total = 0.0;
         cantidadProductosLimite = 99;
         pedido = new Pedido();
@@ -26,8 +28,8 @@ public class Carrito{
     public void quitarProducto(Producto producto){
         if(productosCarrito.containsKey(producto)){
             productosCarrito.remove(producto);
-            int cantidad=productosCarrito.get(producto);
-            total=-producto.getPrecio()*cantidad;
+            //int cantidad=productosCarrito.get(producto);
+            //total=-producto.getPrecio()*cantidad;
             actualizarTotal();
         }
     }
@@ -72,9 +74,17 @@ public class Carrito{
         }
     }
 
-    public void finalizarPedido(){
+    public void finalizarPedido(Cliente cliente){
+        pedido.asociarCliente(cliente);
         pedido.registrarPedido(this);
         vaciarCarrito();
+        caja.getPedidosPendientes().add(pedido);
+        caja.getClientes().add(cliente);
+        String clienteActual = cliente.getNombre();
+        String mensaje = "Un nuevo pedido ha sido solicitado por el cliente: " + clienteActual + ".";
+        LocalDateTime fechaEmision = LocalDateTime.now(); 
+        Notificacion notificacionCaja = new Notificacion(mensaje, clienteActual, caja.verNombreCajero(), fechaEmision);
+        caja.recibirNotificacionCliente(notificacionCaja);
     }
 
     private void actualizarTotal(){
@@ -98,6 +108,10 @@ public class Carrito{
             System.out.println();
         }
         System.out.println("Total: " + total + " Bs");
+    }
+    
+    private void vincularConCaja(Caja cajaRelacionada){
+        caja = cajaRelacionada;
     }
 
     public HashMap<Producto, Integer> getProductosCarrito(){

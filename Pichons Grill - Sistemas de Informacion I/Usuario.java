@@ -13,12 +13,12 @@ public class Usuario{
         return telefono;
     }
     
-    public void setNombre(){
-        
+    public void setNombre(String nuevoNombre){
+        nombre = nuevoNombre;
     }
     
-    public void setTelefono(){
-        
+    public void setTelefono(String nuevoTelefono){
+        telefono = nuevoTelefono;
     }
     
     public void agregarContrasena(){

@@ -86,7 +86,7 @@ public class Cliente extends Usuario{
                     res = "No es posible quitar el producto solicitado, no existe en el carrito.";
                 }
             }else{
-                res = "No es posible quitar productos, si el carrito esta vacio, agregue productos.";
+                res = "No es posible quitar productos, el carrito esta vacio, agregue productos.";
             }
         }else{
             res = "No se ha podido retirar el producto del carrito, el producto que desea retirar no existe.";
@@ -217,7 +217,7 @@ public class Cliente extends Usuario{
     
     public boolean confirmarPedido(){
         boolean res;
-        carrito.finalizarPedido();
+        carrito.finalizarPedido(this);
         res = true;
         return res;
     }
@@ -227,6 +227,4 @@ public class Cliente extends Usuario{
         res = carrito.getProductosCarrito();
         return res;
     }
-    
-    
 }

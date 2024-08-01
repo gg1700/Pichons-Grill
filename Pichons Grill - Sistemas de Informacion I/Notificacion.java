@@ -1,29 +1,33 @@
 import java.util.Date;
+import java.time.*;
 
-
-public class Notificacion
-{
+public class Notificacion{
     protected String mensaje;
     protected String remitente;
-    protected Usuario destinatario;
-    protected Date fecha;
+    protected String destinatario;
+    protected LocalDateTime fecha;
     protected Pedido pedido;
-    public Notificacion(String mensaje,String remitente,Usuario destinatario,Date fecha){
+    
+    public Notificacion(String mensaje, String remitente, String destinatario, LocalDateTime fecha){
         this.mensaje=mensaje;
         this.remitente=remitente;
         this.destinatario=destinatario;
-        this.fecha=fecha;
+        this.fecha = fecha;
     }
+    
     public String getMensaje(){
         return mensaje;
     }
+    
     public String getRemitente(){
         return remitente;
     }
+    
     public String getDestinatario(){
-        return destinatario.getNombre();
-    }public Date getFecha(){
-        return fecha;
+        return destinatario;
     }
     
+    public LocalDateTime getFecha(){
+        return fecha;
+    }
 }

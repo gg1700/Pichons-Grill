@@ -1,4 +1,5 @@
 import java.util.*;
+import java.time.LocalDateTime;
 
 public class Pedido {
     private static int idContador = 1;
@@ -7,7 +8,8 @@ public class Pedido {
     private ArrayList<Integer> cantidades;
     private double total;
     private String estado;
-    private Date fecha;
+    private LocalDateTime fecha;
+    private Cliente cliente;
 
     public Pedido() {
         this.idPedido = idContador++;
@@ -15,7 +17,8 @@ public class Pedido {
         this.cantidades = new ArrayList<>();
         this.total = 0.0;
         this.estado = "Pendiente";
-        this.fecha = new Date();
+        fecha = LocalDateTime.now();
+        this.cliente = null;
     }
 
     public void registrarPedido(Carrito carrito) {
@@ -48,6 +51,10 @@ public class Pedido {
         System.out.println("Total: " + total + " Bs");
         System.out.println("Estado: " + estado);
     }
+    
+    public void asociarCliente(Cliente cliente){
+        this.cliente = cliente;
+    }
 
     public ArrayList<Producto> getProductos() {
         return productos;
@@ -69,7 +76,7 @@ public class Pedido {
         return idPedido;
     }
 
-    public Date getFecha() {
+    public LocalDateTime getFecha() {
         return fecha;
     }
 
