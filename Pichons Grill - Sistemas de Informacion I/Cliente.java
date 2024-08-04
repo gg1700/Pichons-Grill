@@ -68,21 +68,22 @@ public class Cliente extends Usuario{
         System.out.println("Opcion No. 3: seccion de bebidas");
     }
 
-    public String verMenuFiltros(int nroOpcion){
-        String res;
+    public void verMenuFiltros(int nroOpcion) throws BadRequestException{
+        //String res;
         if(nroOpcion == 1){
             menu.mostrarMenuCompleto();
-            res = "Menu completo impreso.";
+            //res = "Menu completo impreso.";
         }else if(nroOpcion == 2){
             menu.mostrarPlatos();
-            res = "Menu de platillos impreso.";
+            //res = "Menu de platillos impreso.";
         }else if(nroOpcion == 3){
             menu.mostrarBebidas();
-            res = "Menu de bebidas impreso.";
+            //res = "Menu de bebidas impreso.";
         }else{
-            res = "La opcion ingresada no es valida, o es incorrecta.";
+            throw new BadRequestException("La opcion ingresada no es valida, o es incorrecta.");
+            //res = "La opcion ingresada no es valida, o es incorrecta.";
         }
-        return res;
+        //return res;
     }
 
     public String verDetallesProduto(int id){
@@ -267,15 +268,16 @@ public class Cliente extends Usuario{
         return res;
     }
     
-    public String cancelarPedido(){
-        String res;
+    public void cancelarPedido() throws BadRequestException{
+        //String res;
         if(!carrito.esVacio()){
             carrito.vaciarCarrito();
-            res = "El pedido ha sido cancelado, todos los productos en el carrito han sido eliminados.";
+            //res = "El pedido ha sido cancelado, todos los productos en el carrito han sido eliminados.";
         }else{
-            res = "El pedido ha sido cancelado, no se borro ningun producto, porque el carrito estaba vacio.";
+            throw new BadRequestException("El pedido ha sido cancelado, no se borro ningun producto, porque el carrito estaba vacio.");
+            //res = "El pedido ha sido cancelado, no se borro ningun producto, porque el carrito estaba vacio.";
         }
-        return res;
+        //return res;
     }
     
     private void confirmarPedido(){

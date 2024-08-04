@@ -56,8 +56,13 @@ public class Aplicacion{
         //Se notifica al repartidor de su pedido pendiente
         cajero.asignarPedidoRepartidor();
         
-        //Cambia estado de pedido a "En Progreso"
-        repartidor.verDetallesPedidoPendiente();
+        try{
+            //Cambia estado de pedido a "En Progreso"
+            repartidor.verDetallesPedidoPendiente();
+        }catch (BadRequestException msj) {
+            msj.printStackTrace();
+        }
+        
         mensaje += repartidor.marcarPedidoProgreso();
         System.out.println(mensaje);
         //

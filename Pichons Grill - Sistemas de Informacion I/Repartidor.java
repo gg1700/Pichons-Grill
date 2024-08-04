@@ -24,7 +24,7 @@ public class Repartidor extends Usuario{
         estado = nuevoEstado;
     }
 
-    public void verDetallesPedidoPendiente(){
+    public void verDetallesPedidoPendiente() throws BadRequestException{
         double total = 0;
         if(!pedidosPendientes.isEmpty()){
             String metodoPago;
@@ -61,7 +61,8 @@ public class Repartidor extends Usuario{
             }
             System.out.println("TOTAL: "+total);
         }else{
-            System.out.println("No hay pedidos pendientes");
+            //System.out.println("No hay pedidos pendientes");
+            throw new BadRequestException("No hay pedidos pendientes.");
         }
     }
 
