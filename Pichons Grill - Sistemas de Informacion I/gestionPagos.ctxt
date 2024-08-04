@@ -1,9 +1,0 @@
-#BlueJ class context
-comment0.target=gestionPagos
-comment1.params=
-comment1.target=gestionPagos()
-comment2.params=pago
-comment2.target=java.lang.String\ registrarPago(Pago)
-comment3.params=pago
-comment3.target=boolean\ validarPago(Pago)
-numComments=4

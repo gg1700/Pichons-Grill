@@ -1,7 +1,7 @@
 import java.util.*;
 import java.time.LocalDateTime;
 
-public class Pedido {
+public class Pedido{
     private static int idContador = 1;
     private int idPedido;
     private ArrayList<Producto> productos;
@@ -10,15 +10,17 @@ public class Pedido {
     private String estado;
     private LocalDateTime fecha;
     private Cliente cliente;
+    private boolean pagoEnEfectivo;
 
     public Pedido() {
         this.idPedido = idContador++;
-        this.productos = new ArrayList<>();
-        this.cantidades = new ArrayList<>();
+        this.productos = new ArrayList<Producto>();
+        this.cantidades = new ArrayList<Integer>();
         this.total = 0.0;
         this.estado = "Pendiente";
         fecha = LocalDateTime.now();
         this.cliente = null;
+        this.pagoEnEfectivo = false;
     }
 
     public void registrarPedido(Carrito carrito) {
@@ -82,5 +84,9 @@ public class Pedido {
 
     public Cliente getCliente() {
         return null;
+    }
+    
+    public void cambiarEnEfectivo(){
+        pagoEnEfectivo = !pagoEnEfectivo;
     }
 }

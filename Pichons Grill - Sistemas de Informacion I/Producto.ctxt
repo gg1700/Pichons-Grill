@@ -16,4 +16,6 @@ comment7.params=
 comment7.target=java.lang.String\ getImagen()
 comment8.params=nuevoId
 comment8.target=void\ setIdProducto(int)
-numComments=9
+comment9.params=
+comment9.target=void\ mostrarDetalles()
+numComments=10

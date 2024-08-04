@@ -30,4 +30,19 @@ public class Bebida extends Producto{
     public void setMarca(String nuevaMarca){
         marca = nuevaMarca;
     }
+    
+    @Override
+    public void mostrarDetalles(){
+        System.out.println("Id: " + idProducto);
+        System.out.println("Nombre: " + nombreProducto);
+        System.out.println("Precio: " + precio + " Bs.");
+        System.out.println("Descripcion: " + descripcion);
+        if(esNatural()){
+            System.out.println("Tipo de Bebida: Natural");
+        }else{
+            System.out.println("Tipo de Bebida: Gaseosa");
+        }
+        System.out.println("Marca: " + marca);
+        System.out.println("Cantidad: " + mls + " ml.");
+    }
 }

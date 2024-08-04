@@ -12,6 +12,7 @@ public class Caja{
     protected ArrayList<Repartidor> repartidores;
     protected Cajero cajeroDesignado;
     protected ArrayList<Notificacion> notificaciones;
+    private int limiteSuperior = 999;
     
     public Caja(){
         listaDeCompletados = new ArrayList<Pedido>();
@@ -69,6 +70,33 @@ public class Caja{
         }
     }
     
+    public String registrarPago(Pago pago){
+        String res = "";
+        if(listaDePagos.isEmpty()){
+            pago.setIdPago(1);
+            listaDePagos.add(pago);
+            res = "Pago registrado exitosamente!";
+        }else{
+            int ultimoId = listaDePagos.get(listaDePagos.size()-1).getIdPago();
+            pago.setIdPago(ultimoId + 1);
+            if(validarPago(pago)){
+                res = "Pago registrado exitosamente!";
+                listaDePagos.add(pago);
+            }else{
+                res = "El Pago no pudo ser registrado.";
+            }
+        }
+        return res;
+    }
+    
+    private boolean validarPago(Pago pago){
+        boolean res = true;
+        if(pago.getIdPago() > limiteSuperior){
+            res = false;
+        }
+        return res;
+    }
+    
     public ArrayList<Pedido> getPedidosPendientes(){
         return listaDePendientesAll;
     }
@@ -79,5 +107,9 @@ public class Caja{
     
     public void recibirNotificacionCliente(Notificacion notificacion){
         notificaciones.add(notificacion);
+    }
+    
+    public void agregarPago(Pago pago){
+        listaDePagos.add(pago);
     }
 }

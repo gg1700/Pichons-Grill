@@ -1,10 +1,16 @@
 import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Cliente extends Usuario{
     private String direccion;
     private String NIT;
     private Menu menu;
     private Carrito carrito;
+    private ArrayList<Pedido> historialPedidos;
+    private double saldo;
+    private String bancoAsociado;
+    private int numeroTarjeta; 
+    private int CVV;
 
     public Cliente(){
         
@@ -17,29 +23,69 @@ public class Cliente extends Usuario{
     public String getNIT(){
         return NIT;
     }
-
-    public void setDireccion(){
-
+    
+    public String getBancoAsociado(){
+        return bancoAsociado;
+    }
+    
+    public int getNroTarjeta(){
+        return numeroTarjeta;
+    }
+    
+    public int getCVV(){
+        return CVV;
     }
 
-    public void setNIT(){
+    public void setDireccion(String nuevaDireccion){
+        direccion = nuevaDireccion;
+    }
 
+    public void setNIT(String nuevoNIT){
+        NIT = nuevoNIT;
     }
     
     public void consultarFiltrosMenu(){
-        
+        System.out.println("----------- Opciones para visualizar Menu -----------");
+        System.out.println("Opcion No. 1: Menu completo");
+        System.out.println("Opcion No. 2: seccion de platillos");
+        System.out.println("Opcion No. 3: seccion de bebidas");
     }
 
-    public Menu verMenu(int noOpcion){
-        return menu; 
+    public String verMenuFiltros(int nroOpcion){
+        String res;
+        if(nroOpcion == 1){
+            menu.mostrarMenuCompleto();
+            res = "Menu completo impreso.";
+        }else if(nroOpcion == 2){
+            menu.mostrarPlatos();
+            res = "Menu de platillos impreso.";
+        }else if(nroOpcion == 3){
+            menu.mostrarBebidas();
+            res = "Menu de bebidas impreso.";
+        }else{
+            res = "La opcion ingresada no es valida, o es incorrecta.";
+        }
+        return res;
     }
 
-    public Menu seleccionarFiltro(){
-        return menu;
-    }
-
-    public Producto verDetallesProduto(){
-        return null;
+    public String verDetallesProduto(int id){
+        String res;
+        if(menu.idValido(id)){
+            Producto producto = menu.getProductoMenu(id);
+            if(producto instanceof Plato){
+                Plato plato = (Plato)(producto);
+                plato.mostrarDetalles();
+            }else if(producto instanceof Bebida){
+                Bebida bebida = (Bebida)(producto);
+                bebida.mostrarDetalles();
+            }else{
+                producto.mostrarDetalles();
+            }
+            res = "Detalles de " + producto.getNombreProducto() + " impresos.";
+        }else{
+            res = "Producto no encontrado en el menu principal.";
+        }
+        return res;
     }
 
     public String agregarProductoCarrito(int id, int cantidad){
@@ -215,16 +261,51 @@ public class Cliente extends Usuario{
         return res;
     }
     
-    public boolean confirmarPedido(){
-        boolean res;
+    private void confirmarPedido(){
         carrito.finalizarPedido(this);
-        res = true;
+    }
+    
+    private void mostrarMetodosPago(){
+        System.out.println();
+        System.out.println("--------METODS DE PAGO--------");
+        System.out.println("1. Pagar en Efectivo");
+        System.out.println("2. Pagar con QR");
+        System.out.println("3. Pagar con Tarjeta de Credito");
+        System.out.println("4. Cancelar compra");
+    }
+    
+    public String pagarPedido(int nroOpcion, double monto){
+        String res;
+        if(verificarPagoSaldo(monto) && monto == carrito.getTotal()){
+            if(nroOpcion <= 3 && nroOpcion >= 1){
+                confirmarPedido();
+                carrito.pagarPedido(nroOpcion, monto, this);
+                saldo =- monto;
+                res = "El pedido ha sido pagado con exito.";
+            }else if(nroOpcion == 4){
+                res = "El pedido ha sido cancelado por completo.";
+            }else{
+                res = "La introducida elegida no existe.";
+            }
+        }else{
+            res = "No se puede pagar el pedido, monto insuficiente.";
+        }
         return res;
     }
     
     public HashMap<Producto, Integer> verProductosCarrito(){
         HashMap<Producto, Integer> res;
         res = carrito.getProductosCarrito();
+        return res;
+    }
+    
+    public void registrarHistorialPedido(Pedido pedido){
+        historialPedidos.add(pedido);
+    }
+    
+    public boolean verificarPagoSaldo(double monto){
+        boolean res;
+        res = (monto <= saldo);
         return res;
     }
 }

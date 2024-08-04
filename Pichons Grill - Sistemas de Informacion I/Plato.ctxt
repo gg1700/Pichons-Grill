@@ -6,4 +6,6 @@ comment2.params=
 comment2.target=java.lang.String\ getCategoria()
 comment3.params=nuevaCategoria
 comment3.target=void\ setCategoria(java.lang.String)
-numComments=4
+comment4.params=
+comment4.target=void\ mostrarDetalles()
+numComments=5

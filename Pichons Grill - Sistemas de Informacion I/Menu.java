@@ -151,11 +151,40 @@ public class Menu{
     }
 
     private void generarListaBebidas(){
-        for(Bebida bebidaActual1:bebidasNaturales){
+        for(Bebida bebidaActual1: bebidasNaturales){
             listaBebidas.add(bebidaActual1);
         }
         for(Bebida bebidaActual2:bebidasGaseosas){
             listaBebidas.add(bebidaActual2);
+        }
+    }
+    
+    public void mostrarMenuCompleto(){
+        for(Producto productoActual: productos){
+            String atributo = productoActual.getIdProducto() + "";
+            System.out.println("Id: " + atributo);
+            atributo = productoActual.getNombreProducto();
+            System.out.println("Nombre: " + atributo);
+            atributo = productoActual.getPrecio() + " Bs.";
+            System.out.println("Precio: " + atributo);
+            atributo = productoActual.getDescripcion();
+            System.out.println("Descripcion: " + atributo);
+            if(productoActual instanceof Plato){
+                Plato plato = (Plato)(productoActual);
+                atributo = plato.getCategoria();
+                System.out.println("Categoria: " + atributo);
+            }else{
+                Bebida bebida = (Bebida)(productoActual);
+                if(bebida.esNatural()){
+                    System.out.println("Tipo de Bebida: Natural");
+                }else{
+                    System.out.println("Tipo de Bebida: Gaseosa");
+                }
+                atributo = bebida.getMarca();
+                System.out.println("Marca: " + atributo);
+                atributo = bebida.getMls() + " ml";
+                System.out.println("Cantidad: " + atributo);
+            }
         }
     }
     

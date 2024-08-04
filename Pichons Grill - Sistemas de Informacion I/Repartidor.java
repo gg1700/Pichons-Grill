@@ -11,7 +11,6 @@ public class Repartidor extends Usuario implements Cloneable{
     }
 
     public void verDetallesPedidoPendiente(){
-
         String direccion="Reducto";
         double total=0;
         if(!pedidosPendientes.isEmpty()){
@@ -19,12 +18,10 @@ public class Repartidor extends Usuario implements Cloneable{
             Pago pedidoPrioritario=pedidosPendientes.get(0);
             if(pedidoPrioritario instanceof Efectivo){
                 metodoPago="Efectivo";  
-            }
-            else{
+            }else{
                 if(pedidoPrioritario instanceof QR){
                     metodoPago="QR";  
-                }
-                else{
+                }else{
                     metodoPago="Tarjeta de Credito"; 
                 }
             }
@@ -50,8 +47,7 @@ public class Repartidor extends Usuario implements Cloneable{
                 total+=subTotal;
             }
             System.out.println("TOTAL: "+total);
-        }
-        else{
+        }else{
             System.out.println("No hay pedidos pendientes");
         }
     }

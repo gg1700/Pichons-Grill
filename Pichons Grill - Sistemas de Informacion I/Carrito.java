@@ -1,5 +1,6 @@
 import java.util.*;
 import java.time.LocalDateTime;
+import java.util.UUID.*;
 
 public class Carrito{
     private HashMap<Producto, Integer> productosCarrito;
@@ -78,6 +79,7 @@ public class Carrito{
         pedido.asociarCliente(cliente);
         pedido.registrarPedido(this);
         vaciarCarrito();
+        cliente.registrarHistorialPedido(pedido);
         caja.getPedidosPendientes().add(pedido);
         caja.getClientes().add(cliente);
         String clienteActual = cliente.getNombre();
@@ -85,6 +87,38 @@ public class Carrito{
         LocalDateTime fechaEmision = LocalDateTime.now(); 
         Notificacion notificacionCaja = new Notificacion(mensaje, clienteActual, caja.verNombreCajero(), fechaEmision);
         caja.recibirNotificacionCliente(notificacionCaja);
+    }
+    
+    public void pagarPedido(int nroOpcion, double monto, Cliente cliente){
+        if(nroOpcion == 1){
+            Efectivo pago = new Efectivo(pedido);
+            pedido.cambiarEnEfectivo(); //booleano esEnEfectivo
+            pedido.cambiarEstado("Pagado.");
+            caja.agregarPago(pago);
+        }else if(nroOpcion == 2){
+            QR pago = new QR(pedido);
+            LocalDateTime fechaHoy = LocalDateTime.now();
+            LocalDateTime fechaManana = fechaHoy.plusDays(1);
+            UUID uuid = UUID.randomUUID();
+            String imagen = uuid.toString();
+            String banco = cliente.getBancoAsociado();
+            pago.crearQR(fechaHoy, fechaManana, monto, imagen, banco);
+            pedido.cambiarEstado("Pagado.");
+            caja.agregarPago(pago);
+        }else if(nroOpcion == 3){
+            TarjetaCredito pago = new TarjetaCredito(pedido);
+            int numeroTarjeta = cliente.getNroTarjeta();
+            int CVV = cliente.getCVV();
+            String titular = cliente.getNombre();
+            String banco = cliente.getBancoAsociado();
+            String direccion = cliente.getDireccion();
+            pago.registrarDatos(numeroTarjeta, CVV, titular, banco, direccion);
+            pedido.cambiarEstado("Pagado.");
+            caja.agregarPago(pago);
+        }else if(nroOpcion == 4){
+            vaciarCarrito();
+            pedido.cambiarEstado("Cancelado.");
+        }
     }
 
     private void actualizarTotal(){

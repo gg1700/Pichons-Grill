@@ -12,4 +12,6 @@ comment5.params=nuevosMls
 comment5.target=void\ setMls(int)
 comment6.params=nuevaMarca
 comment6.target=void\ setMarca(java.lang.String)
-numComments=7
+comment7.params=
+comment7.target=void\ mostrarDetalles()
+numComments=8

@@ -46,4 +46,11 @@ public class Producto{
     public void setIdProducto(int nuevoId){
        idProducto = nuevoId; 
     }
+    
+    public void mostrarDetalles(){
+        System.out.println("Id: " + idProducto);
+        System.out.println("Nombre: " + nombreProducto);
+        System.out.println("Precio: " + precio + " Bs.");
+        System.out.println("Descripcion: " + descripcion);
+    }
 }

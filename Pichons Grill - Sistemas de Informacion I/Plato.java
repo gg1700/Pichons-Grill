@@ -14,4 +14,13 @@ public class Plato extends Producto{
     public void setCategoria(String nuevaCategoria){
         categoria = nuevaCategoria;
     }
+    
+    @Override    
+    public void mostrarDetalles(){
+        System.out.println("Id: " + idProducto);
+        System.out.println("Nombre: " + nombreProducto);
+        System.out.println("Precio: " + precio + " Bs.");
+        System.out.println("Descripcion: " + descripcion);
+        System.out.println("Categoria: " + categoria);
+    }
 }
