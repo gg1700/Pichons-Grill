@@ -1,33 +1,45 @@
 import java.util.*;
 
 public class Repartidor extends Usuario implements Cloneable{
-    private ArrayList<Pago> pedidosCompletos;
-    private ArrayList<Pago> pedidosPendientes;
-    private Pago pedidoProgreso;
+    private ArrayList<Pedido> pedidosCompletos;
+    private ArrayList<Pedido> pedidosPendientes;
+    private Pedido pedidoProgreso;
+    private String estado;
 
-    public Repartidor(){
-        pedidosCompletos=new ArrayList<Pago>();
-        pedidosPendientes=new ArrayList<Pago>();
+    public Repartidor(String nombre, String telefono){
+        this.nombre = nombre;
+        this.telefono = telefono;
+        pedidosCompletos = new ArrayList<Pedido>();
+        pedidosPendientes = new ArrayList<Pedido>();
+        estado = "Disponible.";
+    }
+    
+    public String getEstado(){
+        return estado;
+    }
+    
+    public void setEstado(String nuevoEstado){
+        estado = nuevoEstado;
     }
 
     public void verDetallesPedidoPendiente(){
-        String direccion="Reducto";
-        double total=0;
+        String direccion = "Reducto";
+        double total = 0;
         if(!pedidosPendientes.isEmpty()){
             String metodoPago;
-            Pago pedidoPrioritario=pedidosPendientes.get(0);
-            if(pedidoPrioritario instanceof Efectivo){
-                metodoPago="Efectivo";  
+            Pedido pedidoPrioritario = pedidosPendientes.get(0);
+            if(pedidoPrioritario.getTipoPago().equals("Efectivo.")){
+                metodoPago = "Efectivo";  
             }else{
-                if(pedidoPrioritario instanceof QR){
-                    metodoPago="QR";  
+                if(pedidoPrioritario.getTipoPago().equals("QR.")){
+                    metodoPago = "QR";  
                 }else{
-                    metodoPago="Tarjeta de Credito"; 
+                    metodoPago = "Tarjeta de Credito"; 
                 }
             }
             String detalle;
             System.out.println("PEDIDO PENDIENTE");
-            Pedido pedidoActual=pedidoPrioritario.getPedido();
+            Pedido pedidoActual = pedidoPrioritario;
             detalle=pedidoActual.getIdPedido()+"";
             System.out.println("PEDIDO: "+detalle);
             System.out.println("Direccion: "+direccion);
@@ -61,7 +73,7 @@ public class Repartidor extends Usuario implements Cloneable{
 
     public void marcarPedidoProgreso(){
         if(!pedidosPendientes.isEmpty()){
-            pedidoProgreso=pedidosPendientes.get(0);
+            pedidoProgreso = pedidosPendientes.get(0);
             pedidosPendientes.remove(0);
         }
     }
@@ -75,29 +87,27 @@ public class Repartidor extends Usuario implements Cloneable{
     }
 
     public Pedido getPedidoEnProgresoActual(){
-        return pedidoProgreso.getPedido();
+        return pedidoProgreso;
     }
 
     public void pedidosCompletados(){
         System.out.println("------PEDIDOS COMPLETADOS------");
-        String direccion="Reducto";
-        double total=0;
+        String direccion = "Reducto";
+        double total = 0;
         if(!pedidosCompletos.isEmpty()){
             String metodoPago;
-            for(Pago pedidoPrioritario:pedidosCompletos){
-                if(pedidoPrioritario instanceof Efectivo){
-                    metodoPago="Efectivo";  
-                }
-                else{
-                    if(pedidoPrioritario instanceof QR){
-                        metodoPago="QR";  
-                    }
-                    else{
-                        metodoPago="Tarjeta de Credito"; 
+            for(Pedido pedidoPrioritario: pedidosCompletos){
+                if(pedidoPrioritario.getTipoPago().equals("Efectivo.")){
+                    metodoPago = "Efectivo";  
+                }else{
+                    if(pedidoPrioritario.getTipoPago().equals("QR.")){
+                        metodoPago = "QR";  
+                    }else{
+                        metodoPago = "Tarjeta de Credito"; 
                     }
                 }
                 String detalle;
-                Pedido pedidoActual=pedidoPrioritario.getPedido();
+                Pedido pedidoActual = pedidoPrioritario;
                 detalle=pedidoActual.getIdPedido()+"";
                 System.out.println("PEDIDO: "+detalle);
                 System.out.println("Direccion: "+direccion);
@@ -121,9 +131,12 @@ public class Repartidor extends Usuario implements Cloneable{
                 System.out.println("");
                 System.out.println("");
             }  
-        }
-        else{
+        }else{
             System.out.println("No hay ningun pedidoCompleto");
         }
+    }
+    
+    public void recibirPedido(Pedido pedido){
+        
     }
 }

@@ -4,16 +4,25 @@ import java.util.ArrayList;
 public class Cliente extends Usuario{
     private String direccion;
     private String NIT;
-    private Menu menu;
-    private Carrito carrito;
+    private Menu menu; //Registrar a parte
+    private Carrito carrito; //Registrar a parte
     private ArrayList<Pedido> historialPedidos;
     private double saldo;
     private String bancoAsociado;
     private int numeroTarjeta; 
     private int CVV;
 
-    public Cliente(){
-        
+    public Cliente(String nombre, String telefono, String direccion, String NIT, double saldo,
+    String bancoAsociado, int numeroTarjeta, int CVV){
+        this.nombre = nombre;
+        this.telefono = telefono;
+        this.direccion = direccion;
+        this.NIT = NIT;
+        historialPedidos = new ArrayList<Pedido>();
+        this.saldo = saldo;
+        this.bancoAsociado = bancoAsociado;
+        this.numeroTarjeta = numeroTarjeta;
+        this.CVV = CVV;
     }
 
     public String getDireccion(){
@@ -42,6 +51,14 @@ public class Cliente extends Usuario{
 
     public void setNIT(String nuevoNIT){
         NIT = nuevoNIT;
+    }
+    
+    public void setMenu(Menu nuevoMenu){
+        menu = nuevoMenu;
+    }
+    
+    public void setCarrito(Carrito nuevoCarrito){
+        carrito = nuevoCarrito;
     }
     
     public void consultarFiltrosMenu(){
@@ -92,7 +109,7 @@ public class Cliente extends Usuario{
         String res;
         if(menu.idValido(id)){
             Producto productoActual = menu.getProductoMenu(id);
-            if(!productoActual.getNombreProducto().equals("") && productoActual.getIdProducto() != 0){
+            if(!productoActual.getNombreProducto().equals("")){
                 carrito.agregarProducto(productoActual, cantidad);
                 if(productoActual instanceof Plato){
                     res = "El plato ha sido registrado en el carrito exitosamente.";
@@ -116,7 +133,7 @@ public class Cliente extends Usuario{
             if(!carrito.esVacio()){
                 Producto productoActual = menu.getProductoMenu(id);
                 if(carrito.getProductosCarrito().containsKey(productoActual)){
-                    if(!productoActual.getNombreProducto().equals("") && productoActual.getIdProducto() != 0){
+                    if(!productoActual.getNombreProducto().equals("")){
                         carrito.quitarProducto(productoActual);
                         if(productoActual instanceof Plato){
                             res = "El plato que ha seleccionado, ha sido retirado del carrito.";
@@ -147,7 +164,7 @@ public class Cliente extends Usuario{
                 Producto productoActual = menu.getProductoMenu(id);
                 if(carrito.getProductosCarrito().containsKey(productoActual)){
                     if(carrito.validarCantidad(cantidad)){
-                        if(!productoActual.getNombreProducto().equals("") && productoActual.getIdProducto() != 0){
+                        if(!productoActual.getNombreProducto().equals("")){
                             carrito.modificarCantidad(productoActual, cantidad);
                             if(productoActual instanceof Plato){
                                 res = "El plato que ha seleccionado, ha sido modificado en cantidad.";
@@ -182,7 +199,7 @@ public class Cliente extends Usuario{
                 if(carrito.getProductosCarrito().containsKey(productoActual)){
                     int cantidad = carrito.getProductosCarrito().get(productoActual);
                     if(carrito.validarCantidad(cantidad)){
-                        if(!productoActual.getNombreProducto().equals("") && productoActual.getIdProducto() != 0){
+                        if(!productoActual.getNombreProducto().equals("")){
                             carrito.sumarCantidadProducto(productoActual);
                             if(productoActual instanceof Plato){
                                 res = "El plato que ha seleccionado, ha sido modificado en cantidad.";
@@ -216,7 +233,7 @@ public class Cliente extends Usuario{
                 Producto productoActual = menu.getProductoMenu(id);
                 if(carrito.getProductosCarrito().containsKey(productoActual)){
                     int cantidad = carrito.getProductosCarrito().get(productoActual);
-                    if(!productoActual.getNombreProducto().equals("") && productoActual.getIdProducto() != 0){
+                    if(!productoActual.getNombreProducto().equals("")){
                         carrito.restarCantidadProducto(productoActual);
                         if(productoActual instanceof Plato){
                             res = "El plato que ha seleccionado, ha sido modificado en cantidad.";
@@ -265,7 +282,7 @@ public class Cliente extends Usuario{
         carrito.finalizarPedido(this);
     }
     
-    private void mostrarMetodosPago(){
+    public void mostrarMetodosPago(){
         System.out.println();
         System.out.println("--------METODS DE PAGO--------");
         System.out.println("1. Pagar en Efectivo");
@@ -276,7 +293,7 @@ public class Cliente extends Usuario{
     
     public String pagarPedido(int nroOpcion, double monto){
         String res;
-        if(verificarPagoSaldo(monto) && monto == carrito.getTotal()){
+        if(verificarPagoSaldo(monto) && monto == carrito.getTotal() && !carrito.esVacio()){
             if(nroOpcion <= 3 && nroOpcion >= 1){
                 confirmarPedido();
                 carrito.pagarPedido(nroOpcion, monto, this);
@@ -287,7 +304,10 @@ public class Cliente extends Usuario{
             }else{
                 res = "La introducida elegida no existe.";
             }
-        }else{
+        }else if(carrito.esVacio()){
+            res = "No es posible pagar un pedido que no contenga productos en el carrito.";
+        }
+        else{
             res = "No se puede pagar el pedido, monto insuficiente.";
         }
         return res;

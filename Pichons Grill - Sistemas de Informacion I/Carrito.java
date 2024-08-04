@@ -92,7 +92,7 @@ public class Carrito{
     public void pagarPedido(int nroOpcion, double monto, Cliente cliente){
         if(nroOpcion == 1){
             Efectivo pago = new Efectivo(pedido);
-            pedido.cambiarEnEfectivo(); //booleano esEnEfectivo
+            pedido.setTipoPago("Efectivo."); //booleano esEnEfectivo
             pedido.cambiarEstado("Pagado.");
             caja.agregarPago(pago);
         }else if(nroOpcion == 2){
@@ -103,6 +103,7 @@ public class Carrito{
             String imagen = uuid.toString();
             String banco = cliente.getBancoAsociado();
             pago.crearQR(fechaHoy, fechaManana, monto, imagen, banco);
+            pedido.setTipoPago("QR.");
             pedido.cambiarEstado("Pagado.");
             caja.agregarPago(pago);
         }else if(nroOpcion == 3){
@@ -113,6 +114,7 @@ public class Carrito{
             String banco = cliente.getBancoAsociado();
             String direccion = cliente.getDireccion();
             pago.registrarDatos(numeroTarjeta, CVV, titular, banco, direccion);
+            pedido.setTipoPago("Tarjeta de Credito.");
             pedido.cambiarEstado("Pagado.");
             caja.agregarPago(pago);
         }else if(nroOpcion == 4){
@@ -144,7 +146,7 @@ public class Carrito{
         System.out.println("Total: " + total + " Bs");
     }
     
-    private void vincularConCaja(Caja cajaRelacionada){
+    public void vincularConCaja(Caja cajaRelacionada){
         caja = cajaRelacionada;
     }
 

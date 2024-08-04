@@ -10,7 +10,7 @@ public class Pedido{
     private String estado;
     private LocalDateTime fecha;
     private Cliente cliente;
-    private boolean pagoEnEfectivo;
+    private String tipoPago;
 
     public Pedido() {
         this.idPedido = idContador++;
@@ -20,7 +20,7 @@ public class Pedido{
         this.estado = "Pendiente";
         fecha = LocalDateTime.now();
         this.cliente = null;
-        this.pagoEnEfectivo = false;
+        this.tipoPago = "";
     }
 
     public void registrarPedido(Carrito carrito) {
@@ -86,7 +86,11 @@ public class Pedido{
         return null;
     }
     
-    public void cambiarEnEfectivo(){
-        pagoEnEfectivo = !pagoEnEfectivo;
+    public void setTipoPago(String nuevoTipoPago){
+        tipoPago = nuevoTipoPago;
+    }
+    
+    public String getTipoPago(){
+        return tipoPago;
     }
 }

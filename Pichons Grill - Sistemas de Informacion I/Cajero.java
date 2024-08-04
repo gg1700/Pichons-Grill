@@ -3,24 +3,22 @@ import java.time.LocalDateTime;
 
 public class Cajero extends Usuario{
     protected String idCajero;
-    protected String nombreCajero;
-    protected Caja caja;
+    protected String nombre;
+    protected Caja caja; //Registrar a Parte
+    protected ArrayList<Repartidor> listaRepartidores;
+    protected ArrayList<Pedido> pedidosPendientes;
     
-    public Cajero(String idCajero,String nombreCajero){
-        this.idCajero=idCajero;
-        this.nombreCajero=nombreCajero;
+    public Cajero(String nombre, String telefono, String idCajero){
+        this.idCajero = idCajero;
+        this.nombre = nombre;
+        this.telefono = telefono;
+        //this.caja = caja;
+        this.listaRepartidores = new ArrayList<Repartidor>();
+        this.pedidosPendientes = caja.getPedidosPendientes();
     }
     
     public void designarCaja(Caja caja){
-        this.caja=caja;
-    }
-    
-    protected String getNombreCajero(){
-        return nombreCajero;
-    }
-    
-    protected void setNombreCajero(String nombreCajero){
-        this.nombreCajero=nombreCajero;
+        this.caja = caja;
     }
     
     public String getIdCajero(){
@@ -39,11 +37,26 @@ public class Cajero extends Usuario{
         caja.verContactosDelCliente();
     }
     
+    public void agregarRepartidor(Repartidor repartidor){
+        listaRepartidores.add(repartidor);
+    }
+    
+    public void asignarPedidoRepartidor(){
+        for(Repartidor repartidorActual: listaRepartidores){
+            if(repartidorActual.getEstado().equals("Disponible.")){
+                Pedido pedidoReciente = pedidosPendientes.get(0);
+                repartidorActual.recibirPedido(pedidoReciente);
+                pedidosPendientes.remove(0);
+                repartidorActual.setEstado("Ocupado.");
+            }
+        }
+    }
+    
     public void notificarRepartidor(){
-        String mensaje="Usted tiene un nuevo pedido";
+        String mensaje = "Usted tiene un nuevo pedido";
         String destinatario = caja.repartidores.get(0).getNombre();
         LocalDateTime fecha = LocalDateTime.now();
-        Notificacion notificacion = new Notificacion(mensaje,getNombreCajero(),destinatario,fecha);
+        Notificacion notificacion = new Notificacion(mensaje, getNombre(),destinatario, fecha);
     }
     
     public ArrayList<Pedido> ordenarPedidosPorCompletadosPendientes(){

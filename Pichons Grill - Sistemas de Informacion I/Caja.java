@@ -31,7 +31,7 @@ public class Caja{
     }
     
     public String verNombreCajero() {
-        return cajeroDesignado.getNombreCajero();
+        return cajeroDesignado.getNombre();
     }
     
     public void designarNuevoCajero(Cajero cajeroDesignado){
