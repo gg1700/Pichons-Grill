@@ -158,4 +158,8 @@ public class Repartidor extends Usuario{
         pedidosPendientes.add(pedido);
         notificaciones.add(notificacion);
     }
+    
+    public ArrayList<Pedido> getPedidosPendientes(){
+        return pedidosPendientes;
+    }
 }

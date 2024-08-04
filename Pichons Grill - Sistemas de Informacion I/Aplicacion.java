@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class Aplicacion{
     private static Menu menu;
     private static Carrito carrito;
+    private static Caja caja;
+    private static Repartidor repartidor;
+    private static Cajero cajero;
+    private static Cliente cliente;
     
     public static void Main(String[] args){
         String mensaje = ""; //eliminar luego
@@ -16,20 +20,19 @@ public class Aplicacion{
         setProductos();
         
         carrito = new Carrito();
-        Caja caja = new Caja();
+        caja = new Caja();
         //instanciar repartidor
-        Repartidor repartidor = new Repartidor("Ignacio Jaldin", "12345678");
+        repartidor = new Repartidor("Ignacio Jaldin", "12345678");
         //configurar cajero y caja
-        Cajero cajero = new Cajero("Apolinar Torrez", "12345678", "0", caja);
+        cajero = new Cajero("Apolinar Torrez", "12345678", "0", caja);
         caja.designarNuevoCajero(cajero); // Se 
         cajero.agregarRepartidor(repartidor);
         
         //id cliente 0 e instanciar cliente
-        Cliente cliente = new Cliente("Sergio Maldonado", "12345678", "CLIZA", "1234567", 400.0, "Banco Bissa", 1234, 321);
+        cliente = new Cliente("Sergio Maldonado", "12345678", "CLIZA", "1234567", 400.0, "Banco Bissa", 1234, 321);
         
         cliente.setCarrito(carrito);
         cliente.setMenu(menu);
-        
         carrito.vincularConCaja(caja);
         
         //cliente.verDetallesCliente();
@@ -80,11 +83,27 @@ public class Aplicacion{
         return menu;
     }
     
-    public Carrito getCliente(){
+    public Cliente getCliente(){
+        return cliente;
+    }
+    
+    public Caja getCaja(){
+        return caja;
+    }
+    
+    public Repartidor getRepartidor(){
+        return repartidor;
+    }
+    
+    public Carrito getCarrito(){
         return carrito;
     }
     
-    private static void setProductos(){
+    public Cajero getCajero(){
+        return cajero;
+    }
+    
+    public static void setProductos(){
         menu = new Menu();
         
         Plato platillo1 = new Plato("Costilla de Novillo", 60.0, "jugosa costila de novillo", "novillo.jpg", "Carnes");
@@ -110,5 +129,27 @@ public class Aplicacion{
         menu.registrarProducto(bebida8);
         menu.registrarProducto(bebida9);
         menu.registrarProducto(bebida10);
+    }
+    
+    public void vincularCajaCajeroRepartidor(Caja caja, Cajero cajero, Repartidor repartidor){
+        caja.designarNuevoCajero(cajero); // Se 
+        cajero.agregarRepartidor(repartidor);
+    }
+    
+    public void vincularClienteCarritoCaja(Cliente cliente, Carrito carrito, Menu menu){
+        cliente.setCarrito(carrito);
+        cliente.setMenu(menu);
+        carrito.vincularConCaja(caja);
+    }
+    
+    public void crearActores(){
+        setProductos();
+        carrito = new Carrito();
+        caja = new Caja();
+        //instanciar repartidor
+        repartidor = new Repartidor("Ignacio Jaldin", "12345678");
+        //configurar cajero y caja
+        cajero = new Cajero("Apolinar Torrez", "12345678", "0", caja);
+        cliente = new Cliente("Sergio Maldonado", "12345678", "CLIZA", "1234567", 400.0, "Banco Bissa", 1234, 321);
     }
 }

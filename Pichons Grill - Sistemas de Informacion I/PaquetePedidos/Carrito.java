@@ -179,4 +179,8 @@ public class Carrito{
     public int getCantidadProductoLimite(){
         return cantidadProductosLimite;
     }
+    
+    public Pedido getPedido(){
+        return pedido;
+    }
 }

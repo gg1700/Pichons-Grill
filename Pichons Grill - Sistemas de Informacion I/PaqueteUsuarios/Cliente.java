@@ -39,6 +39,10 @@ public class Cliente extends Usuario{
         return NIT;
     }
     
+    public double getSaldo(){
+        return saldo;
+    }
+    
     public String getBancoAsociado(){
         return bancoAsociado;
     }
