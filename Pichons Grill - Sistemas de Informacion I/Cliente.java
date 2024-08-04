@@ -4,8 +4,8 @@ import java.util.ArrayList;
 public class Cliente extends Usuario{
     private String direccion;
     private String NIT;
-    private Menu menu; //Registrar a parte
-    private Carrito carrito; //Registrar a parte
+    private Menu menu; 
+    private Carrito carrito; 
     private ArrayList<Pedido> historialPedidos;
     private double saldo;
     private String bancoAsociado;
@@ -331,5 +331,18 @@ public class Cliente extends Usuario{
     
     public void abonarCuenta(double monto){
         saldo += monto;
+    }
+    
+    public void verDetallesCliente(){
+        System.out.println("Detalles de Cliente: ");
+        System.out.println(nombre);
+        System.out.println(telefono);
+        System.out.println(direccion);
+        System.out.println(NIT);
+        System.out.println(saldo);
+        System.out.println(bancoAsociado);
+        System.out.println(numeroTarjeta);
+        System.out.println(CVV);
+        System.out.println();
     }
 }

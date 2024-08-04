@@ -25,7 +25,6 @@ public class Repartidor extends Usuario{
     }
 
     public void verDetallesPedidoPendiente(){
-        String direccion = "Reducto";
         double total = 0;
         if(!pedidosPendientes.isEmpty()){
             String metodoPago;
@@ -40,24 +39,24 @@ public class Repartidor extends Usuario{
                 }
             }
             String detalle;
-            System.out.println("PEDIDO PENDIENTE");
+            System.out.println("-----PEDIDO PENDIENTE-----");
             Pedido pedidoActual = pedidoPrioritario;
-            detalle=pedidoActual.getIdPedido()+"";
-            System.out.println("PEDIDO: "+detalle);
-            System.out.println("Direccion: "+direccion);
-            ArrayList<Producto> productos=pedidoActual.getProductos();
-            ArrayList<Integer> cantidades=pedidoActual.getCantidades();
+            detalle = pedidoActual.getIdPedido()+"";
+            System.out.println("Pedido: "+ detalle);
+            System.out.println("Direccion: "+ pedidoActual.getCliente().getDireccion());
+            ArrayList<Producto> productos = pedidoActual.getProductos();
+            ArrayList<Integer> cantidades = pedidoActual.getCantidades();
             for(int i=0;i<productos.size();i++){
-                Producto producto=productos.get(i);
-                detalle=producto.getNombreProducto();
-                System.out.println("Producto :"+detalle);
-                int cantidad=cantidades.get(i);
-                detalle=cantidad+"";
-                System.out.println("Cantidad :"+cantidad);
-                double precio=producto.getPrecio();
-                double subTotal=precio*cantidad;
+                Producto producto = productos.get(i);
+                detalle = producto.getNombreProducto();
+                System.out.println("Producto: "+detalle);
+                int cantidad = cantidades.get(i);
+                detalle = cantidad + "";
+                System.out.println("Cantidad: " + cantidad);
+                double precio = producto.getPrecio();
+                double subTotal = precio*cantidad;
                 detalle=subTotal+"";
-                System.out.println("SubTotal :"+detalle);
+                System.out.println("SubTotal: "+detalle);
                 total+=subTotal;
             }
             System.out.println("TOTAL: "+total);
@@ -66,7 +65,8 @@ public class Repartidor extends Usuario{
         }
     }
 
-    public void marcarPedidoCompletado(){
+    public String marcarPedidoCompletado(){
+        String res = "";
         if(pedidoProgreso != null){
             pedidosCompletos.add(pedidoProgreso);
             pedidosCompletos.get(0).cambiarEstado("Completado.");
@@ -74,15 +74,20 @@ public class Repartidor extends Usuario{
             if(pedidosPendientes.isEmpty()){
                 estado = "Disponible.";
             }
+            res += "Estado del pedido: " + pedidosCompletos.get(0).getEstado();
         }
+        return res;
     }
 
-    public void marcarPedidoProgreso(){
+    public String marcarPedidoProgreso(){
+        String res = "";
         if(!pedidosPendientes.isEmpty()){
             pedidoProgreso = pedidosPendientes.get(0);
             pedidoProgreso.cambiarEstado("En Progreso.");
             pedidosPendientes.remove(0);
+            res += "Estado del pedido: " + pedidoProgreso.getEstado();
         }
+        return res;
     }
 
     public void notificarCliente(){
@@ -99,7 +104,6 @@ public class Repartidor extends Usuario{
 
     public void pedidosCompletados(){
         System.out.println("------PEDIDOS COMPLETADOS------");
-        String direccion = "Reducto";
         double total = 0;
         if(!pedidosCompletos.isEmpty()){
             String metodoPago;
@@ -115,23 +119,23 @@ public class Repartidor extends Usuario{
                 }
                 String detalle;
                 Pedido pedidoActual = pedidoPrioritario;
-                detalle=pedidoActual.getIdPedido()+"";
-                System.out.println("PEDIDO: "+detalle);
-                System.out.println("Direccion: "+direccion);
-                ArrayList<Producto> productos=pedidoActual.getProductos();
-                ArrayList<Integer> cantidades=pedidoActual.getCantidades();
+                detalle = pedidoActual.getIdPedido() + "";
+                System.out.println("PEDIDO: " + detalle);
+                System.out.println("Direccion: " + pedidoActual.getCliente().getDireccion());
+                ArrayList<Producto> productos = pedidoActual.getProductos();
+                ArrayList<Integer> cantidades = pedidoActual.getCantidades();
                 for(int i=0;i<productos.size();i++){
-                    Producto producto=productos.get(i);
-                    detalle=producto.getNombreProducto();
-                    System.out.println("Producto :"+detalle);
-                    int cantidad=cantidades.get(i);
-                    detalle=cantidad+"";
-                    System.out.println("Cantidad :"+cantidad);
-                    double precio=producto.getPrecio();
-                    double subTotal=precio*cantidad;
-                    detalle=subTotal+"";
-                    System.out.println("SubTotal :"+detalle);
-                    total+=subTotal;
+                    Producto producto = productos.get(i);
+                    detalle = producto.getNombreProducto();
+                    System.out.println("Producto: "+ detalle);
+                    int cantidad = cantidades.get(i);
+                    detalle = cantidad + "";
+                    System.out.println("Cantidad: "+ cantidad);
+                    double precio = producto.getPrecio();
+                    double subTotal = precio*cantidad;
+                    detalle = subTotal + "";
+                    System.out.println("SubTotal: "+ detalle);
+                    total += subTotal;
                 }
                 System.out.println("TOTAL: "+total);
                 System.out.println("");

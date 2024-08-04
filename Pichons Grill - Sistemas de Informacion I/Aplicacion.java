@@ -5,27 +5,28 @@ public class Aplicacion{
     private static Carrito carrito;
     
     public static void Main(String[] args){
-        String mensaje = ""; //eliminar
+        String mensaje = ""; //eliminar luego
         
         setProductos();
         
         carrito = new Carrito();
         Caja caja = new Caja();
+        //instanciar repartidor
+        Repartidor repartidor = new Repartidor("Ignacio Jaldin", "12345678");
+        //configurar cajero y caja
+        Cajero cajero = new Cajero("Apolinar Torrez", "12345678", "0", caja);
+        caja.designarNuevoCajero(cajero); // Se 
+        cajero.agregarRepartidor(repartidor);
         
-        Cajero cajero = new Cajero("pendego", "12345678", "0", caja);
-        caja.designarNuevoCajero(cajero); // Se relacionan los 2
-        
-        
-        //id cliente 0
-        Cliente cliente = new Cliente("nom", "telf", "dir", "NIT", 150.0, "banco", 1234, 666);
-
+        //id cliente 0 e instanciar cliente
+        Cliente cliente = new Cliente("Sergio Maldonado", "12345678", "CLIZA", "1234567", 400.0, "Banco Bissa", 1234, 321);
         
         cliente.setCarrito(carrito);
         cliente.setMenu(menu);
         
-
-        
         carrito.vincularConCaja(caja);
+        
+        //cliente.verDetallesCliente();
         
         /** Platos
          * 0.Costilla de Novillo
@@ -46,7 +47,21 @@ public class Aplicacion{
         mensaje += cliente.agregarProductoCarrito(9, 2) + " \n";
         System.out.println(mensaje);
         
+        mensaje = "";
         mensaje += cliente.pagarPedido(1, cliente.verMontoTotal());
+        System.out.println(mensaje);
+        
+        mensaje = "";
+        
+        //Se notifica al repartidor de su pedido pendiente
+        cajero.asignarPedidoRepartidor();
+        
+        //Cambia estado de pedido a "En Progreso"
+        repartidor.verDetallesPedidoPendiente();
+        mensaje += repartidor.marcarPedidoProgreso();
+        System.out.println(mensaje);
+        //
+        mensaje += repartidor.marcarPedidoCompletado();
         System.out.println(mensaje);
     }
     
