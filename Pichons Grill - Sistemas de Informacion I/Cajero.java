@@ -8,15 +8,16 @@ public class Cajero extends Usuario{
     protected ArrayList<Repartidor> listaRepartidores;
     protected ArrayList<Pedido> pedidosPendientes;
     
-    public Cajero(String nombre, String telefono, String idCajero){
+    public Cajero(String nombre, String telefono, String idCajero, Caja caja){
         this.idCajero = idCajero;
         this.nombre = nombre;
         this.telefono = telefono;
         //this.caja = caja;
         this.listaRepartidores = new ArrayList<Repartidor>();
+        this.caja = caja;
         this.pedidosPendientes = caja.getPedidosPendientes();
     }
-    
+        
     public void designarCaja(Caja caja){
         this.caja = caja;
     }
