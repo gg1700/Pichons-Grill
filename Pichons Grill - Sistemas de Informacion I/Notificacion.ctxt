@@ -1,7 +1,7 @@
 #BlueJ class context
 comment0.target=Notificacion
-comment1.params=mensaje\ remitente\ destinatario\ fecha
-comment1.target=Notificacion(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.time.LocalDateTime)
+comment1.params=mensaje\ remitente\ destinatario\ fecha\ pedido
+comment1.target=Notificacion(java.lang.String,\ java.lang.String,\ java.lang.String,\ java.time.LocalDateTime,\ Pedido)
 comment2.params=
 comment2.target=java.lang.String\ getMensaje()
 comment3.params=

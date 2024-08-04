@@ -85,7 +85,7 @@ public class Carrito{
         String clienteActual = cliente.getNombre();
         String mensaje = "Un nuevo pedido ha sido solicitado por el cliente: " + clienteActual + ".";
         LocalDateTime fechaEmision = LocalDateTime.now(); 
-        Notificacion notificacionCaja = new Notificacion(mensaje, clienteActual, caja.verNombreCajero(), fechaEmision);
+        Notificacion notificacionCaja = new Notificacion(mensaje, clienteActual, caja.verNombreCajero(), fechaEmision, pedido);
         caja.recibirNotificacionCliente(notificacionCaja);
     }
     

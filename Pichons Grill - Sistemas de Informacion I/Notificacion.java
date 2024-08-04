@@ -8,11 +8,12 @@ public class Notificacion{
     protected LocalDateTime fecha;
     protected Pedido pedido;
     
-    public Notificacion(String mensaje, String remitente, String destinatario, LocalDateTime fecha){
-        this.mensaje=mensaje;
-        this.remitente=remitente;
-        this.destinatario=destinatario;
+    public Notificacion(String mensaje, String remitente, String destinatario, LocalDateTime fecha, Pedido pedido){
+        this.mensaje = mensaje;
+        this.remitente = remitente;
+        this.destinatario = destinatario;
         this.fecha = fecha;
+        this.pedido = pedido;
     }
     
     public String getMensaje(){

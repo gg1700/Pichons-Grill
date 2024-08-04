@@ -17,8 +17,4 @@ public abstract class Pago{
     public Pedido getPedido(){
         return pedido;
     }
-    
-    public Cliente getCliente(){
-       return pedido.getCliente();
-    }
 }

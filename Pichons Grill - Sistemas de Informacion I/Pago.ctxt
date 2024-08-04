@@ -8,6 +8,4 @@ comment3.params=
 comment3.target=int\ getIdPago()
 comment4.params=
 comment4.target=Pedido\ getPedido()
-comment5.params=
-comment5.target=Cliente\ getCliente()
-numComments=6
+numComments=5

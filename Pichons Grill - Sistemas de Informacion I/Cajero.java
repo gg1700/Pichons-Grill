@@ -3,7 +3,6 @@ import java.time.LocalDateTime;
 
 public class Cajero extends Usuario{
     protected String idCajero;
-    protected String nombre;
     protected Caja caja; //Registrar a Parte
     protected ArrayList<Repartidor> listaRepartidores;
     protected ArrayList<Pedido> pedidosPendientes;
@@ -57,7 +56,9 @@ public class Cajero extends Usuario{
         String mensaje = "Usted tiene un nuevo pedido";
         String destinatario = caja.repartidores.get(0).getNombre();
         LocalDateTime fecha = LocalDateTime.now();
-        Notificacion notificacion = new Notificacion(mensaje, getNombre(),destinatario, fecha);
+        Pedido pedido = caja.getPedidosPendientes().get(0);
+        Notificacion notificacion = new Notificacion(mensaje, getNombre(),destinatario, fecha, pedido);
+        caja.getPedidosPendientes().remove(0);
     }
     
     public ArrayList<Pedido> ordenarPedidosPorCompletadosPendientes(){

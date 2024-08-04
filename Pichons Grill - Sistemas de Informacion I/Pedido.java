@@ -83,7 +83,7 @@ public class Pedido{
     }
 
     public Cliente getCliente() {
-        return null;
+        return cliente;
     }
     
     public void setTipoPago(String nuevoTipoPago){

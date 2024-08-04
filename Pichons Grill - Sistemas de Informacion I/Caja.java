@@ -44,14 +44,13 @@ public class Caja{
         }else{
             System.out.println("---------Pagos del dia----------");
             for(Pago pago: listaDePagos ){
-                String depositario= pago.getCliente().getNombre();
-                System.out.println("Depositario :"+depositario);
+                String depositario= pago.getPedido().getCliente().getNombre();
+                System.out.println("Depositario:" + depositario);
                 double monto= pago.pedido.getTotal();
-                System.out.println("Monto Depositado");
+                System.out.println("Monto Depositado: " + monto);
                 LocalDateTime fechaPago = pago.pedido.getFecha();
-                SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
-                String fechaFormateada = formatoFecha.format(fechaPago);
-                System.out.println("Fecha del Pago :"+fechaFormateada);
+                String fecha = fechaPago.getDayOfMonth() + " /" + fechaPago.getMonthValue() + "/" + fechaPago.getYear();
+                System.out.println("Fecha del Pago: " + fecha);
             }
         }
     }
@@ -63,9 +62,9 @@ public class Caja{
             System.out.println("---------Contactos Registrados----------");
             for(Cliente cliente: clientes ){
                 String nombre= cliente.getNombre();
-                System.out.println("Cliente :"+nombre);
+                System.out.println("Cliente :" + nombre);
                 String numero= cliente.getTelefono();
-                System.out.println("Cliente :"+nombre);
+                System.out.println("Cliente :" + numero);
             }
         }
     }

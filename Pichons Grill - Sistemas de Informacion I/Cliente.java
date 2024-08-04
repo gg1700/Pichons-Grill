@@ -297,7 +297,7 @@ public class Cliente extends Usuario{
             if(nroOpcion <= 3 && nroOpcion >= 1){
                 confirmarPedido();
                 carrito.pagarPedido(nroOpcion, monto, this);
-                saldo =- monto;
+                saldo -= monto;
                 res = "El pedido ha sido pagado con exito.";
             }else if(nroOpcion == 4){
                 res = "El pedido ha sido cancelado por completo.";
