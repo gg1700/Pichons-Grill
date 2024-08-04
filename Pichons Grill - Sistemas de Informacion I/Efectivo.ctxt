@@ -1,7 +1,0 @@
-#BlueJ class context
-comment0.target=Efectivo
-comment1.params=pedido
-comment1.target=Efectivo(Pedido)
-comment2.params=
-comment2.target=double\ getTotal()
-numComments=3

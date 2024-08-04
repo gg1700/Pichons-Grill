@@ -1,3 +1,9 @@
+import PaquetePedidos.*;
+import PaquetePagos.*;
+import PaqueteUsuarios.*;
+import PaqueteProductos.*;
+import PaqueteExepciones.*;
+
 import java.util.ArrayList;
 
 public class Aplicacion{
