@@ -8,6 +8,4 @@ comment3.params=nuevoNombre
 comment3.target=void\ setNombre(java.lang.String)
 comment4.params=nuevoTelefono
 comment4.target=void\ setTelefono(java.lang.String)
-comment5.params=
-comment5.target=void\ agregarContrasena()
-numComments=6
+numComments=5

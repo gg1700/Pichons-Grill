@@ -4,30 +4,20 @@ import java.util.Date;
 import java.time.LocalDateTime;
 
 public class Caja{
-    protected ArrayList<Pedido> listaDePendientesAll;
-    protected ArrayList<Pedido> listaDeCompletados;
-    protected String fecha;
-    protected ArrayList<Pago> listaDePagos;
-    protected ArrayList<Cliente> clientes;
-    protected ArrayList<Repartidor> repartidores;
-    protected Cajero cajeroDesignado;
-    protected ArrayList<Notificacion> notificaciones;
+    private ArrayList<Pedido> listaDePendientes;
+    private ArrayList<Pedido> listaDeCompletados;
+    private ArrayList<Pago> listaDePagos;
+    private ArrayList<Cliente> clientes;
+    private Cajero cajeroDesignado;
+    private ArrayList<Notificacion> notificaciones;
     private int limiteSuperior = 999;
     
     public Caja(){
         listaDeCompletados = new ArrayList<Pedido>();
-        listaDePendientesAll = new ArrayList<Pedido>();
+        listaDePendientes = new ArrayList<Pedido>();
         listaDePagos = new ArrayList<Pago>();
         clientes = new ArrayList<Cliente>();
         notificaciones = new ArrayList<Notificacion>();
-    }
-    
-    public void pasarPedidoACocina(){
-        
-    }
-    
-    public void pasarPedidoARepartidor(){
-        //repartidores.get(0).listaDePendientesAll.add();
     }
     
     public String verNombreCajero() {
@@ -49,7 +39,7 @@ public class Caja{
                 double monto= pago.pedido.getTotal();
                 System.out.println("Monto Depositado: " + monto);
                 LocalDateTime fechaPago = pago.pedido.getFecha();
-                String fecha = fechaPago.getDayOfMonth() + " /" + fechaPago.getMonthValue() + "/" + fechaPago.getYear();
+                String fecha = fechaPago.getDayOfMonth() + "/" + fechaPago.getMonthValue() + "/" + fechaPago.getYear();
                 System.out.println("Fecha del Pago: " + fecha);
             }
         }
@@ -61,10 +51,10 @@ public class Caja{
         }else{
             System.out.println("---------Contactos Registrados----------");
             for(Cliente cliente: clientes ){
-                String nombre= cliente.getNombre();
-                System.out.println("Cliente :" + nombre);
-                String numero= cliente.getTelefono();
-                System.out.println("Cliente :" + numero);
+                String nombre = cliente.getNombre();
+                System.out.println("Nombre del cliente :" + nombre);
+                String numero = cliente.getTelefono();
+                System.out.println("Telefono :" + numero);
             }
         }
     }
@@ -74,12 +64,12 @@ public class Caja{
         if(listaDePagos.isEmpty()){
             pago.setIdPago(1);
             listaDePagos.add(pago);
-            res = "Pago registrado exitosamente!";
+            res = "¡Pago registrado exitosamente!";
         }else{
             int ultimoId = listaDePagos.get(listaDePagos.size()-1).getIdPago();
             pago.setIdPago(ultimoId + 1);
             if(validarPago(pago)){
-                res = "Pago registrado exitosamente!";
+                res = "¡Pago registrado exitosamente!";
                 listaDePagos.add(pago);
             }else{
                 res = "El Pago no pudo ser registrado.";
@@ -97,7 +87,7 @@ public class Caja{
     }
     
     public ArrayList<Pedido> getPedidosPendientes(){
-        return listaDePendientesAll;
+        return listaDePendientes;
     }
     
     public ArrayList<Cliente> getClientes(){
@@ -110,5 +100,9 @@ public class Caja{
     
     public void agregarPago(Pago pago){
         listaDePagos.add(pago);
+    }
+    
+    public ArrayList<Pedido> getPedidosCompletados(){
+        return listaDeCompletados;
     }
 }

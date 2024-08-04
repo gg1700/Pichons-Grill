@@ -2,7 +2,6 @@ import java.util.ArrayList;
 
 public class Usuario{
     protected String nombre;
-    protected ArrayList<String> contrasenas;
     protected String telefono;
     
     public String getNombre(){
@@ -19,9 +18,5 @@ public class Usuario{
     
     public void setTelefono(String nuevoTelefono){
         telefono = nuevoTelefono;
-    }
-    
-    public void agregarContrasena(){
-        //PRUEBITAPOL
     }
 }

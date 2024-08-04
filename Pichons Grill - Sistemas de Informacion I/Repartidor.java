@@ -1,10 +1,11 @@
 import java.util.*;
 
-public class Repartidor extends Usuario implements Cloneable{
+public class Repartidor extends Usuario{
     private ArrayList<Pedido> pedidosCompletos;
     private ArrayList<Pedido> pedidosPendientes;
     private Pedido pedidoProgreso;
     private String estado;
+    private ArrayList<Notificacion> notificaciones;
 
     public Repartidor(String nombre, String telefono){
         this.nombre = nombre;
@@ -12,6 +13,7 @@ public class Repartidor extends Usuario implements Cloneable{
         pedidosCompletos = new ArrayList<Pedido>();
         pedidosPendientes = new ArrayList<Pedido>();
         estado = "Disponible.";
+        notificaciones = new ArrayList<Notificacion>();
     }
     
     public String getEstado(){
@@ -65,15 +67,20 @@ public class Repartidor extends Usuario implements Cloneable{
     }
 
     public void marcarPedidoCompletado(){
-        if(pedidoProgreso!=null){
+        if(pedidoProgreso != null){
             pedidosCompletos.add(pedidoProgreso);
-            pedidoProgreso=null;
+            pedidosCompletos.get(0).cambiarEstado("Completado.");
+            pedidoProgreso = null;
+            if(pedidosPendientes.isEmpty()){
+                estado = "Disponible.";
+            }
         }
     }
 
     public void marcarPedidoProgreso(){
         if(!pedidosPendientes.isEmpty()){
             pedidoProgreso = pedidosPendientes.get(0);
+            pedidoProgreso.cambiarEstado("En Progreso.");
             pedidosPendientes.remove(0);
         }
     }
@@ -136,7 +143,8 @@ public class Repartidor extends Usuario implements Cloneable{
         }
     }
     
-    public void recibirPedido(Pedido pedido){
-        
+    public void recibirPedido(Pedido pedido, Notificacion notificacion){
+        pedidosPendientes.add(pedido);
+        notificaciones.add(notificacion);
     }
 }

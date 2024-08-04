@@ -2,11 +2,11 @@ import java.util.Date;
 import java.time.*;
 
 public class Notificacion{
-    protected String mensaje;
-    protected String remitente;
-    protected String destinatario;
-    protected LocalDateTime fecha;
-    protected Pedido pedido;
+    private String mensaje;
+    private String remitente;
+    private String destinatario;
+    private LocalDateTime fecha;
+    private Pedido pedido;
     
     public Notificacion(String mensaje, String remitente, String destinatario, LocalDateTime fecha, Pedido pedido){
         this.mensaje = mensaje;

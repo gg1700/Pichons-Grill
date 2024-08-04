@@ -328,4 +328,8 @@ public class Cliente extends Usuario{
         res = (monto <= saldo);
         return res;
     }
+    
+    public void abonarCuenta(double monto){
+        saldo += monto;
+    }
 }
